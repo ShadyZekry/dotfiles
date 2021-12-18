@@ -1,0 +1,15 @@
+*
+
+!.gitignore
+
+!.bashrc
+!.bash_profile
+!.Xresources
+!.xinitrc
+
+!.config
+!arco-dwm
+!arco-st
+!mpv
+!Thunar
+!rofi
