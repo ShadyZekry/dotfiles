@@ -20,8 +20,8 @@ bind -m vi-insert 'Control-l: clear-screen'
 
 # Make nano the default editor
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 PS1='[\u@\h \W]\$ '
 
@@ -35,6 +35,8 @@ fi
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
+
+alias vim='nvim'
 
 #list
 alias ls='ls --color=auto'
