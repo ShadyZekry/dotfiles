@@ -8,8 +8,10 @@
 !.xinitrc
 
 !.config
-!arco-dwm
-!arco-st
-!mpv
-!Thunar
-!rofi
+!.config/arco-dwm
+!.config/arco-st
+!.config/mpv
+!.config/Thunar
+!.config/rofi
+!.config/ranger
+!picom
