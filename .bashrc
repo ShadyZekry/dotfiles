@@ -38,6 +38,9 @@ bind "set completion-ignore-case on"
 
 alias vim='nvim'
 
+export PATH=$PATH:~/.config/composer/vendor/bin
+alias art='php artisan'
+
 #list
 alias ls='ls --color=auto'
 alias la='ls -a'
