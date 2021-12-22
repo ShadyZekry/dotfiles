@@ -1,6 +1,8 @@
 *
 
 !.gitignore
+!.gitconfig
+!.gitconfig
 
 !.bashrc
 !.bash_profile
@@ -8,10 +10,24 @@
 !.xinitrc
 
 !.config
+
 !.config/arco-dwm
+!.config/arco-dwm/*
+
 !.config/arco-st
+!.config/arco-st/*
+
 !.config/mpv
+!.config/mpv/*
+
 !.config/Thunar
+!.config/Thunar/*
+
 !.config/rofi
+!.config/rofi/*
+
 !.config/ranger
-!picom
+!.config/ranger/*
+
+!.config/picom/picom.conf
+!.config/picom/picom.conf/*
