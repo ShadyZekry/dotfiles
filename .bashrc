@@ -40,6 +40,8 @@ alias vim='nvim'
 
 export PATH=$PATH:~/.config/composer/vendor/bin
 alias art='php artisan'
+alias makeMig='art make:migration'
+alias mig='art migrate'
 
 #list
 alias ls='ls --color=auto'
