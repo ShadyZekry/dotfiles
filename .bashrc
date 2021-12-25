@@ -38,6 +38,8 @@ fi
 bind "set completion-ignore-case on"
 
 alias vim='nvim'
+alias vimrc='nvim ~/.config/nvim/init.vim'
+alias so='source'
 
 export PATH=$PATH:~/.config/composer/vendor/bin
 alias art='php artisan'
