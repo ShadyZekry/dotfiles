@@ -22,6 +22,7 @@ bind -m vi-insert 'Control-l: clear-screen'
 
 export EDITOR='nvim'
 export VISUAL='nvim'
+export BROWSER='google-chrome-stable'
 
 PS1='[\u@\h \W]\$ '
 

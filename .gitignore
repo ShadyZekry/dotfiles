@@ -13,6 +13,7 @@
 
 !.config/arco-dwm
 !.config/arco-dwm/*
+.config/arco-dwm/dwm
 
 !.config/arco-st
 !.config/arco-st/*
