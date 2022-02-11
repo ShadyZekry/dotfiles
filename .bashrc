@@ -37,8 +37,12 @@ fi
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
+# Set nvim as my default vim
 alias vim='nvim'
-alias vimrc='nvim ~/.config/nvim/init.vim'
+
+# Aliasses fore rc files
+alias vimrc='vim ~/.config/nvim/init.vim'
+alias bashrc='vim ~/.bashrc'
 alias so='source'
 
 export PATH=$PATH:~/.config/composer/vendor/bin
