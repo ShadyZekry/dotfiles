@@ -50,6 +50,9 @@ alias art='php artisan'
 alias makeMig='art make:migration'
 alias mig='art migrate'
 
+# keeping ranger's current directory in shell after exiting
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
 #list
 alias ls='ls --color=auto'
 alias la='ls -a'
