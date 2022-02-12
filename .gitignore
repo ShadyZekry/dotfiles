@@ -11,6 +11,9 @@
 
 !.config
 
+!.config/nvim
+!.config/nvim/*
+
 !.config/arco-dwm
 !.config/arco-dwm/*
 .config/arco-dwm/dwm
