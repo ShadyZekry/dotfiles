@@ -101,3 +101,12 @@ let g:solarized_termtrans=1
 " in ~/.vim/colors/ and uncomment:
 " colorscheme solarized
 "
+
+" Use custom init.vim files if you have one in the file's current directory.
+" If you have one, it will be appended on the current file, because all previous settings will be
+" applied already.
+let b:thisdir=expand("%:p:h")
+let b:vim=b:thisdir."/init.vim"
+if (filereadable(b:vim))
+      execute "source ".b:vim
+endif
