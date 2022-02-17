@@ -106,7 +106,7 @@ let g:solarized_termtrans=1
 " If you have one, it will be appended on the current file, because all previous settings will be
 " applied already.
 let b:thisdir=expand("%:p:h")
-let b:vim=b:thisdir."/init.vim"
+let b:vim=b:thisdir."/.vim"
 if (filereadable(b:vim))
       execute "source ".b:vim
 endif
