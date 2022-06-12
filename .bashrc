@@ -53,6 +53,10 @@ alias mig='art migrate'
 # keeping ranger's current directory in shell after exiting
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
+export PATH=$PATH:~/.emacs.d/bin
+
+export NODE_PATH='/usr/local/lib/node'
+
 #list
 alias ls='ls --color=auto'
 alias la='ls -a'
