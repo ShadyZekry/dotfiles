@@ -1,3 +1,10 @@
 [user]
 	email = shadyzekry75@gmail.com
 	name = Shady Zekry
+[credential]
+	helper = store
+
+[alias]
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+
