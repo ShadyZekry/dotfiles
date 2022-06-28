@@ -7,4 +7,5 @@
 [alias]
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
+  hidden = ! git ls-files -v | grep '^h' | cut -c3-
 
