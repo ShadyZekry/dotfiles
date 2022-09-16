@@ -37,6 +37,9 @@ fi
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
+
+export PATH=$PATH:~/scps
+
 # Set nvim as my default vim
 alias vim='nvim'
 
