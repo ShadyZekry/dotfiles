@@ -50,6 +50,7 @@ alias so='source'
 
 export PATH=$PATH:~/.config/composer/vendor/bin
 alias art='php artisan'
+alias tink='art tinker'
 alias makeMig='art make:migration'
 alias mig='art migrate'
 
