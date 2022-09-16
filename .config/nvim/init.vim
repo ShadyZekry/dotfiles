@@ -1,3 +1,10 @@
+call plug#begin()
+
+  Plug 'preservim/nerdtree'
+
+call plug#end()
+
+
 " Don't try to be vi compatible
 set nocompatible
 
@@ -12,8 +19,7 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
-" TODO: Pick a leader key
-" let mapleader = ","
+let mapleader = " "
 
 " Security
 set modelines=0
@@ -101,6 +107,8 @@ let g:solarized_termtrans=1
 " in ~/.vim/colors/ and uncomment:
 " colorscheme solarized
 "
+
+xnoremap <leader>p "_dP
 
 " Use custom init.vim files if you have one in the file's current directory.
 " If you have one, it will be appended on the current file, because all previous settings will be
