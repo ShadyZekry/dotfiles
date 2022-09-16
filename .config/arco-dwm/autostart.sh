@@ -42,3 +42,6 @@ feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 #run "ckb-next -b"
 #run "discord"
 #run "telegram-desktop"
+
+#mount shared wallpapers folder
+sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
