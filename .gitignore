@@ -35,3 +35,6 @@
 
 !.config/picom/picom.conf
 !.config/picom/picom.conf/*
+
+!scps
+!scps/*
