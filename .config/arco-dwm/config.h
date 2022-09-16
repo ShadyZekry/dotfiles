@@ -85,6 +85,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+static const char *changeLanguagecmd[]  = { "/home/shady/scps/change_keyboard_layout", NULL };
 static const char *calendar[]  = { "gsimplecal", NULL };
 static const char *taskmanager[]  = { "xfce4-taskmanager", NULL };
 
@@ -96,7 +97,11 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = filecmd } },
-	{ MODKEY,             		XK_w,	   spawn,          {.v = browsercmd } },
+	{ MODKEY,                    		XK_w,	     spawn,          {.v = browsercmd } },
+	{ ShiftMask,                    XK_Alt_L,  spawn,          {.v = changeLanguagecmd  } },
+	{ Mod1Mask,                     XK_Shift_L,spawn,          {.v = changeLanguagecmd  } },
+	{ ShiftMask,                    XK_Alt_R,  spawn,          {.v = changeLanguagecmd  } },
+	{ Mod1Mask,                     XK_Shift_R,spawn,          {.v = changeLanguagecmd  } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -111,13 +116,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	/*{ MODKEY,                       XK_Return, zoom,           {0} },*/
 	/*{ MODKEY,                       XK_Tab,    view,           {0} },*/
-	{ MODKEY|ShiftMask,				XK_q,      killclient,     {0} },
-	{ MODKEY,						XK_q,      killclient,     {0} },
+	{ MODKEY|ShiftMask,			      	XK_q,      killclient,     {0} },
+	{ MODKEY,			            			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ControlMask,			XK_comma,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,			      XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -132,10 +137,10 @@ static Key keys[] = {
 	{ Mod1Mask|ControlMask,         XK_Left,   shiftview,      {.i = -1 } },
 	{ Mod1Mask|ControlMask,         XK_Up,     shiftview,      {.i =  1 } },
 	{ Mod1Mask|ControlMask,         XK_Down,   shiftview,      {.i = -1 } },	
-	{ Mod1Mask,						XK_Tab,    shiftview,      {.i =  1 } },
-	{ Mod1Mask|ShiftMask,	        XK_Tab,	   shiftview,	   {.i = -1 } },
-	{ MODKEY,		        		XK_Tab,    shiftview,	   {.i =  1 } },
-	{ MODKEY|ShiftMask,		        XK_Tab,	   shiftview,	   {.i = -1 } },
+	{ Mod1Mask,         						XK_Tab,    shiftview,      {.i =  1 } },
+	{ Mod1Mask|ShiftMask,	          XK_Tab,	   shiftview,	   {.i = -1 } },
+	{ MODKEY,		        	        	XK_Tab,    shiftview,	   {.i =  1 } },
+	{ MODKEY|ShiftMask,		          XK_Tab,	   shiftview,	   {.i = -1 } },
 
 
 	TAGKEYS(                        XK_1,                      0)
