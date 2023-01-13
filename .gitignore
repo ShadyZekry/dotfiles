@@ -36,5 +36,8 @@
 !.config/picom/picom.conf
 !.config/picom/picom.conf/*
 
+!.config/git
+!.config/git/*
+
 !scps
 !scps/*

@@ -9,3 +9,8 @@
   unhide = update-index --no-assume-unchanged
   hidden = ! git ls-files -v | grep '^h' | cut -c3-
 
+[safe]
+	directory = /home/shady/development/cv
+
+[core]
+  excludesFile = ~/.config/git/ignore
