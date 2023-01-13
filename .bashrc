@@ -22,7 +22,7 @@ bind -m vi-insert 'Control-l: clear-screen'
 
 export EDITOR='nvim'
 export VISUAL='nvim'
-export BROWSER='google-chrome-stable'
+export BROWSER='firefox'
 
 PS1='[\u@\h \W]\$ '
 
@@ -40,6 +40,9 @@ bind "set completion-ignore-case on"
 
 export PATH=$PATH:~/scps
 
+#evaluate ssh-agent
+#eval "$(ssh-agent -s)"
+
 # Set nvim as my default vim
 alias vim='nvim'
 
@@ -48,11 +51,22 @@ alias vimrc='vim ~/.config/nvim/init.vim'
 alias bashrc='vim ~/.bashrc'
 alias so='source'
 
+alias c='clear'
+
+# Aliasses fore rc files
+alias downgrade='sudo DOWNGRADE_FROM_ALA=1 downgrade'
+
 export PATH=$PATH:~/.config/composer/vendor/bin
 alias art='php artisan'
 alias tink='art tinker'
+#alias phpunit='./vendor/bin/phpunit'
+#alias test='art test'
+alias phpunit='art test'
 alias makeMig='art make:migration'
 alias mig='art migrate'
+alias sail='./vendor/bin/sail'
+alias sart='sail artisan'
+alias sink='sail tinker'
 
 # keeping ranger's current directory in shell after exiting
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
@@ -60,6 +74,9 @@ alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir
 export PATH=$PATH:~/.emacs.d/bin
 
 export NODE_PATH='/usr/local/lib/node'
+
+# docker configs
+export DOCKER_BUILDKIT=1
 
 #list
 alias ls='ls --color=auto'
@@ -319,6 +336,20 @@ alias personal='cp -Rf /personal/* ~'
 #in there. They will not be overwritten by skel.
 
 [[ -f ~/.bashrc-personal ]] && . ~/.bashrc-personal
+
+# SSH agent
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   # Check for a currently running instance of the agent
+   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+   if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
+   fi
+   #eval `cat $HOME/.ssh/ssh-agent`
+fi
+
+# If the current directory has a bashrc, then use it.
+PROMPT_COMMAND='if [[ "$bashrc" != "$PWD" && "$PWD" != "$HOME" && -e .bashrc ]]; then bashrc="$PWD"; . .bashrc; fi'
 
 # reporting tools - install when not installed
 neofetch
