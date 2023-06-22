@@ -1,8 +1,8 @@
-call plug#begin()
+" call plug#begin()
 
-  Plug 'preservim/nerdtree'
+"   Plug 'preservim/nerdtree'
 
-call plug#end()
+" call plug#end()
 
 
 " Don't try to be vi compatible
