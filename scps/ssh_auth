@@ -1,0 +1,5 @@
+# !bin/bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/github
+
+# Later I will add all the ssh files
