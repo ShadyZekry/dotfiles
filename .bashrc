@@ -45,6 +45,7 @@ export PATH=$PATH:~/scps
 
 # Set nvim as my default vim
 alias vim='nvim'
+alias nvim_test='XDG_CONFIG_HOME=~/.config/nvim_test/ XDG_DATA_HOME=~/.config/nvim_test_data nvim'
 
 # Aliasses fore rc files
 alias vimrc='vim ~/.config/nvim/init.vim'
@@ -345,11 +346,16 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
         # Launch a new instance of the agent
         ssh-agent -s &> $HOME/.ssh/ssh-agent
    fi
-   #eval `cat $HOME/.ssh/ssh-agent`
+   eval `cat $HOME/.ssh/ssh-agent` &> /dev/null
+
+   ssh-add $HOME/.ssh/github &> /dev/null
 fi
 
 # If the current directory has a bashrc, then use it.
 PROMPT_COMMAND='if [[ "$bashrc" != "$PWD" && "$PWD" != "$HOME" && -e .bashrc ]]; then bashrc="$PWD"; . .bashrc; fi'
+
+export PASSWORD_STORE_DIR=~/.password-store
+alias passs='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass fzf'
 
 # reporting tools - install when not installed
 neofetch
