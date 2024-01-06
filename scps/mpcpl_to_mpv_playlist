@@ -1,0 +1,17 @@
+# !/bin/bash
+
+awk -F ',' '
+  /filename/ \
+  { 
+
+    for (i=3; i<=NF; ++i) 
+      print $i
+
+  }
+
+'  $1 \
+|
+
+sed 's/D:\\/\/run\/media\/shady\/Media\// ; s/\\/\//g' |
+
+mpv --playlist=-
