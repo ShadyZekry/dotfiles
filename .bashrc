@@ -40,9 +40,6 @@ bind "set completion-ignore-case on"
 
 export PATH=$PATH:~/scps
 
-#evaluate ssh-agent
-#eval "$(ssh-agent -s)"
-
 # Set nvim as my default vim
 alias vim='nvim'
 alias nvim_test='XDG_CONFIG_HOME=~/.config/nvim_test/ XDG_DATA_HOME=~/.config/nvim_test_data nvim'
@@ -339,17 +336,7 @@ alias personal='cp -Rf /personal/* ~'
 [[ -f ~/.bashrc-personal ]] && . ~/.bashrc-personal
 
 # SSH agent
-if [ -z "$SSH_AUTH_SOCK" ]; then
-   # Check for a currently running instance of the agent
-   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
-   if [ "$RUNNING_AGENT" = "0" ]; then
-        # Launch a new instance of the agent
-        ssh-agent -s &> $HOME/.ssh/ssh-agent
-   fi
-   eval `cat $HOME/.ssh/ssh-agent` &> /dev/null
-
-   ssh-add $HOME/.ssh/github &> /dev/null
-fi
+ssh_auth
 
 # If the current directory has a bashrc, then use it.
 PROMPT_COMMAND='if [[ "$bashrc" != "$PWD" && "$PWD" != "$HOME" && -e .bashrc ]]; then bashrc="$PWD"; . .bashrc; fi'
