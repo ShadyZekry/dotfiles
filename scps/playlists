@@ -1,0 +1,6 @@
+#! /bin/bash
+
+ls /run/media/shady/Media/Music/Favourite/Playlists/ | \
+fzf | \
+xargs -I{} cat "/run/media/shady/Media/Music/Favourite/Playlists/{}" | \
+mpcpl_to_mpv_playlist
