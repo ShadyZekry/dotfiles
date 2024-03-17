@@ -2,5 +2,6 @@
 
 ls /run/media/shady/Media/Music/Favourite/Playlists/ | \
 fzf | \
+sed "s/'/\\\'/g" | \
 xargs -I{} cat "/run/media/shady/Media/Music/Favourite/Playlists/{}" | \
 mpcpl_to_mpv_playlist
