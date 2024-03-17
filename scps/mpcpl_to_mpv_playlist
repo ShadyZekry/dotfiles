@@ -14,4 +14,4 @@ awk -F ',' '
 
 sed 's/D:\\/\/run\/media\/shady\/Media\// ; s/\\/\//g' |
 
-mpv --playlist=-
+nohup mpv --playlist=- > /dev/null 2>&1 &
