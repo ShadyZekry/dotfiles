@@ -344,6 +344,20 @@ PROMPT_COMMAND='if [[ "$bashrc" != "$PWD" && "$PWD" != "$HOME" && -e .bashrc ]];
 export PASSWORD_STORE_DIR=~/.password-store
 alias passs='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass fzf'
 
+# 
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   # Check for a currently running instance of the agent
+   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+   if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
+   fi
+   eval `cat $HOME/.ssh/ssh-agent` &> /dev/null
+
+   ssh-add $HOME/.ssh/github &> /dev/null
+fi
+
+
 # reporting tools - install when not installed
 neofetch
 #screenfetch
