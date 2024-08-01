@@ -40,6 +40,8 @@ bind "set completion-ignore-case on"
 
 export PATH=$PATH:~/scps
 
+export xclip='xclip -selection c'
+
 # Set nvim as my default vim
 alias vim='nvim'
 alias nvim_test='XDG_CONFIG_HOME=~/.config/nvim_test/ XDG_DATA_HOME=~/.config/nvim_test_data nvim'
