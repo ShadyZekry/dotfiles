@@ -41,6 +41,7 @@ bind "set completion-ignore-case on"
 export PATH=$PATH:~/scps
 
 export xclip='xclip -selection c'
+export mkdir='mkdir -p'
 
 # Set nvim as my default vim
 alias vim='nvim'
@@ -56,6 +57,7 @@ alias c='clear'
 # Aliasses fore rc files
 alias downgrade='sudo DOWNGRADE_FROM_ALA=1 downgrade'
 
+# Laravel aliases
 export PATH=$PATH:~/.config/composer/vendor/bin
 alias art='php artisan'
 alias tink='art tinker'
