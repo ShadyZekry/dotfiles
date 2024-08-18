@@ -1,0 +1,1 @@
+xclip -o | cut -d "," -f 2 | base64 --decode | zbarimg -q - | cut -d ":" -f 2-
