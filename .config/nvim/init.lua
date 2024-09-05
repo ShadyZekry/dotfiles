@@ -264,15 +264,29 @@ require("lazy").setup({
 
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`
-			require("telescope").setup({
+
+      local function feedkeys(text)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(text, true, false, true), "n", true)
+      end
+
+      require("telescope").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
+				defaults = {
+					mappings = {
+						i = {
+							["<C-i>"] = function() feedkeys("--glob=") end, --include
+							["<C-x>"] = function() feedkeys("--glob=!") end, --exclude
+							["<C-t>"] = function() feedkeys("-T") end, --file-type
+						},
+						n = {
+							["<C-i>"] = function() feedkeys("--glob=") end, --include
+							["<C-x>"] = function() feedkeys("--glob=!") end, --exclude
+							["<C-t>"] = function() feedkeys("-T") end, --file-type
+						},
+					},
+				},
 				pickers = {
 					find_files = {
 						find_command = { "rg", "--files", "--no-ignore", "--glob", "!vendor/**" }, -- Add this line to include gitignored files
