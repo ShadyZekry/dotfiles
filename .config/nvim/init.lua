@@ -240,14 +240,14 @@ require("lazy").setup({
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 			{ "nvim-telescope/telescope-live-grep-args.nvim" },
 			{ "tpope/vim-fugitive" }, -- Git control for vim
-      {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = true
-        -- use opts = {} for passing setup options
-        -- this is equivalent to setup({}) function
-      },
-},
+			{
+				"windwp/nvim-autopairs",
+				event = "InsertEnter",
+				config = true,
+				-- use opts = {} for passing setup options
+				-- this is equivalent to setup({}) function
+			},
+		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
 			-- it can fuzzy find! It's more than just a "file finder", it can search
@@ -282,25 +282,19 @@ require("lazy").setup({
 				defaults = {
 					mappings = {
 						i = {
-							["<C-i>"] = function()
-								feedkeys("--glob=")
-							end, --include
 							["<C-x>"] = function()
 								feedkeys("--glob=!")
 							end, --exclude
 							["<C-t>"] = function()
-								feedkeys("-T")
+								feedkeys("-t")
 							end, --file-type
 						},
 						n = {
-							["<C-i>"] = function()
-								feedkeys("--glob=")
-							end, --include
 							["<C-x>"] = function()
 								feedkeys("--glob=!")
 							end, --exclude
 							["<C-t>"] = function()
-								feedkeys("-T")
+								feedkeys("-t")
 							end, --file-type
 						},
 					},
