@@ -238,10 +238,16 @@ require("lazy").setup({
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-			{
-				"nvim-telescope/telescope-live-grep-args.nvim",
-			},
-		},
+			{ "nvim-telescope/telescope-live-grep-args.nvim" },
+			{ "tpope/vim-fugitive" }, -- Git control for vim
+      {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
+        -- use opts = {} for passing setup options
+        -- this is equivalent to setup({}) function
+      },
+},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
 			-- it can fuzzy find! It's more than just a "file finder", it can search
@@ -265,25 +271,37 @@ require("lazy").setup({
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`
 
-      local function feedkeys(text)
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(text, true, false, true), "n", true)
-      end
+			local function feedkeys(text)
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(text, true, false, true), "n", true)
+			end
 
-      require("telescope").setup({
+			require("telescope").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
 				defaults = {
 					mappings = {
 						i = {
-							["<C-i>"] = function() feedkeys("--glob=") end, --include
-							["<C-x>"] = function() feedkeys("--glob=!") end, --exclude
-							["<C-t>"] = function() feedkeys("-T") end, --file-type
+							["<C-i>"] = function()
+								feedkeys("--glob=")
+							end, --include
+							["<C-x>"] = function()
+								feedkeys("--glob=!")
+							end, --exclude
+							["<C-t>"] = function()
+								feedkeys("-T")
+							end, --file-type
 						},
 						n = {
-							["<C-i>"] = function() feedkeys("--glob=") end, --include
-							["<C-x>"] = function() feedkeys("--glob=!") end, --exclude
-							["<C-t>"] = function() feedkeys("-T") end, --file-type
+							["<C-i>"] = function()
+								feedkeys("--glob=")
+							end, --include
+							["<C-x>"] = function()
+								feedkeys("--glob=!")
+							end, --exclude
+							["<C-t>"] = function()
+								feedkeys("-T")
+							end, --file-type
 						},
 					},
 				},
