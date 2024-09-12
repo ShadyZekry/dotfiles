@@ -108,6 +108,13 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("n", "<leader>n", "<cmd>cnext<CR>", { desc = "Move to the next location in quickfix list" })
 vim.keymap.set("n", "<leader>p", "<cmd>cprevious<CR>", { desc = "Move to the previous location in quickfix list" })
 
+vim.keymap.set(
+	"n",
+	"<leader>cp",
+	"<cmd>let @+ = expand('%') . '#L' . line('.') . ':' . col('.')<CR>",
+	{ desc = "Copy line path to clipboard" }
+)
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
