@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SESSIONNAME="tagaddod"
+TAGADDOD_PATH=~/development/laravel/tagaddod/tagaddod/
+tmux has-session -t $SESSIONNAME &> /dev/null
+
+if [ $? != 0 ]
+ then
+    tmux new-session -s $SESSIONNAME -c $TAGADDOD_PATH -n sail -d
+    tmux send-keys -t $SESSIONNAME:0 "sail up" C-m
+
+    tmux new-window -t $SESSIONNAME -c $TAGADDOD_PATH -n vim
+    tmux send-keys -t $SESSIONNAME:1 "vim .env" C-m
+
+    tmux new-window -t $SESSIONNAME -c $TAGADDOD_PATH -n git
+    tmux send-keys -t $SESSIONNAME:2 "lazygit" C-m
+fi
+
+tmux attach -t $SESSIONNAME
