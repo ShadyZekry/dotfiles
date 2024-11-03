@@ -13,6 +13,12 @@
 
 !.config/nvim
 !.config/nvim/*
+!.config/nvim/lua
+!.config/nvim/lua/*
+!.config/nvim/lua/custom
+!.config/nvim/lua/custom/*
+!.config/nvim/lua/custom/plugins
+!.config/nvim/lua/custom/plugins/*
 
 !.config/arco-dwm
 !.config/arco-dwm/*
