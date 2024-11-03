@@ -282,6 +282,7 @@ require("lazy").setup({
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(text, true, false, true), "n", true)
 			end
 
+			-- local actions = require("telescope.actions")
 			require("telescope").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
@@ -295,6 +296,9 @@ require("lazy").setup({
 							["<C-t>"] = function()
 								feedkeys("-t")
 							end, --file-type
+
+							-- ["<C-j>"] = actions.cycle_history_next,
+							-- ["<C-k>"] = actions.move_selection_previous,
 						},
 						n = {
 							["<C-x>"] = function()
@@ -338,7 +342,8 @@ require("lazy").setup({
 			vim.keymap.set(
 				"n",
 				"<leader>sl",
-				":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
+				":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+				{ desc = "[S]earch [L]ive Grep Args" }
 			)
 
 			-- Slightly advanced example of overriding default behavior and theme
