@@ -456,7 +456,7 @@ require("lazy").setup({
 
 	{ -- Autoformat
 		"stevearc/conform.nvim",
-		event = { "BufWritePre" },
+		event = { "BufNewFile" },
 		cmd = { "ConformInfo" },
 		keys = {
 			{
