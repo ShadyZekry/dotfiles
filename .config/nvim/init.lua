@@ -115,6 +115,8 @@ vim.keymap.set(
 	{ desc = "Copy line path to clipboard" }
 )
 
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -622,6 +624,16 @@ require("lazy").setup({
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
+	},
+
+	{
+	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 	},
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
