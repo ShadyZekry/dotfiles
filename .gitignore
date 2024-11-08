@@ -17,6 +17,8 @@
 !.config/nvim/lua/*
 !.config/nvim/lua/custom
 !.config/nvim/lua/custom/*
+!.config/nvim/lua/custom/snips
+!.config/nvim/lua/custom/snips/*
 !.config/nvim/lua/custom/plugins
 !.config/nvim/lua/custom/plugins/*
 
