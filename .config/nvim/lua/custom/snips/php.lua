@@ -15,7 +15,7 @@ local generateParameterDocs = function(args)
 
 	parameters = vim.split(parameters, ",")
 	parameters = vim.tbl_map(function(p)
-		return " * @param " .. p:gsub("^%s+", ""):gsub("%s+$", "")
+		return " * @param " .. vim.trim(p)
 	end, parameters)
 
 	-- add a newline at the start of the table
