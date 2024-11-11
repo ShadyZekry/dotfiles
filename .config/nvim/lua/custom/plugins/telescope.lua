@@ -58,6 +58,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(text, true, false, true), "n", true)
 		end
 
+		local actions = require('telescope.actions');
 		require("telescope").setup({
 			-- You can put your default mappings / updates / etc. in here
 			--  All the info you're looking for is in `:help telescope.setup()`
@@ -72,8 +73,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 							feedkeys("-t")
 						end, --file-type
 
-						-- ["<C-j>"] = actions.cycle_history_next,
-						-- ["<C-k>"] = actions.move_selection_previous,
+						["<C-j>"] = actions.cycle_history_next,
+						["<C-k>"] = actions.cycle_history_prev,
 					},
 					n = {
 						["<C-x>"] = function()
