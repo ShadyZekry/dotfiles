@@ -361,6 +361,10 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
    ssh-add $HOME/.ssh/github &> /dev/null
 fi
 
+if [ -f "$PWD/.tmux.conf" ]; then
+    tmux source-file "$PWD/.tmux.conf"
+fi
+
 
 # reporting tools - install when not installed
 neofetch
