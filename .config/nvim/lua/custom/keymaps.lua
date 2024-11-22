@@ -44,3 +44,18 @@ vim.keymap.set(
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
+vim.api.nvim_create_user_command("SnakeToPascal", function()
+	local word = vim.fn.expand("<cword>") -- Get the word under the cursor
+	local pascal_case = word:gsub("_(%a)", function(c)
+		return c:upper()
+	end):gsub("^%l", string.upper) -- Convert to PascalCase
+	vim.cmd('normal! "_ciw' .. pascal_case .. "b") -- Replace the word with PascalCase
+end, { desc = "Convert word under cursor from snake_case to PascalCase" })
+
+vim.api.nvim_create_user_command("PascalToSnake", function()
+	local word = vim.fn.expand("<cword>") -- Get the word under the cursor
+	local pascal_case = word:gsub("([A-Z])", function(c)
+		return "_" .. c:lower()
+	end):sub(2) -- Convert to PascalCase
+	vim.cmd('normal! "_ciw' .. pascal_case .. "b") -- Replace the word with PascalCase
+end, { desc = "Convert word under cursor from PascalCase to snake_case" })
