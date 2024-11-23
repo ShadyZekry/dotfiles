@@ -3,6 +3,12 @@ return {
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = { "BufRead", "BufNewFile" },
+		dependencies = {
+			-- "nvim-treesitter/nvim-treesitter-refactor",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-context",
+		},
 		opts = {
 			ensure_installed = {
 				"bash",
@@ -27,6 +33,15 @@ return {
 				additional_vim_regex_highlighting = { "ruby" },
 			},
 			indent = { enable = true, disable = { "ruby" } },
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<C-space>",
+					node_incremental = "<C-space>",
+					scope_incremental = false,
+					node_decremental = "<bs>",
+				},
+			},
 		},
 		config = function(_, opts)
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -42,10 +57,9 @@ return {
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
 	},
-	-- { "nvim-treesitter/nvim-treesitter-context" },
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		depends = { "nvim-treesitter/nvim-treesitter" },
+		lazy = true,
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				textobjects = {
