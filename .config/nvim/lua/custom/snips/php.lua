@@ -4,6 +4,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local c = ls.choice_node
 local d = ls.dynamic_node
+local f = ls.function_node
 local sn = ls.snippet_node
 local fmta = require("luasnip.extras.fmt").fmta
 
@@ -57,4 +58,31 @@ ls.add_snippets("php", {
 			}
 		)
 	),
+
+	s({
+		name = "PHP foreach loop",
+		dscr = "Generate a PHP foreach loop for an array",
+		trig = "%$(%w+)%.4ech",
+		regTrig = true,
+	}, {
+		f(function(_, snip)
+			local array_name = snip.captures[1]
+			return "foreach ($" .. array_name .. " as $"
+		end, {}),
+		i(1, "key"),
+		t(" => $"),
+		i(2, "value"),
+		t({ ") {", "\t" }),
+		i(3),
+		t({ "", "}" }),
+	}),
+
+	s({ name = "PHP for loop", dscr = "Generate a PHP loop", trig = "for" }, {
+		t("for ($i = 0; $i <= $"),
+		i(1, "n"),
+		t("; $i++) {"),
+		t({ "", "\t" }),
+		i(2),
+		t({ "", "}" }),
+	}),
 })
