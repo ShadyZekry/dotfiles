@@ -1,0 +1,20 @@
+#!/bin/bash
+
+selected_password=$(find $PASSWORD_STORE_DIR \
+	-type f \
+	-not -path "$PASSWORD_STORE_DIR/.git/*" \
+	-printf '%P\n' | \
+	sed 's/\.gpg$//' | \
+	fzf
+)
+password=$( \
+	echo -n $selected_password | \
+	xargs -I {} sh -c 'pass "{}"' | \
+	tr -d \\n
+)
+
+if [[ $password == otpauth://* ]]; then
+	pass otp -c "$selected_password"
+else
+	pass -c "$selected_password"
+fi
