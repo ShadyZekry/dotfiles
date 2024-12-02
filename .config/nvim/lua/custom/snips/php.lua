@@ -85,4 +85,13 @@ ls.add_snippets("php", {
 		i(2),
 		t({ "", "}" }),
 	}),
+
+	s({ name = "Loop PHP string", dscr = "Traverse PHP string", trig = "str_loop" }, {
+		t("$size = strlen($"),
+		i(1, "str"),
+		t(");"),
+		t({ "", "for ($i = 0; $i < $size; $i++) {", "\t" }),
+		i(2),
+		t({ "", "}" }),
+	}),
 })
