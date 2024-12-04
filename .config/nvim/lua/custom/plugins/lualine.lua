@@ -73,6 +73,18 @@ return {
 			table.insert(config.sections.lualine_x, component)
 		end
 
+		local function selectionCount()
+			local isVisualMode = vim.fn.mode():find("[Vv]")
+			if not isVisualMode then
+				return ""
+			end
+			local starts = vim.fn.line("v")
+			local ends = vim.fn.line(".")
+			local lines = starts <= ends and ends - starts + 1 or starts - ends + 1
+			-- return "/ " .. tostring(lines) .. "L " .. tostring(vim.fn.wordcount().visual_chars) .. "C"
+			return tostring(lines) .. "L " .. tostring(vim.fn.wordcount().visual_chars) .. "C"
+		end
+
 		-- Add components to the left
 		ins_left({
 			function()
@@ -198,6 +210,7 @@ return {
 			color = { fg = colors.green, gui = "bold" },
 		})
 		ins_right({ "location" })
+		ins_right({ selectionCount })
 		ins_right({ "progress", color = { fg = colors.fg, gui = "bold" } })
 		ins_right({ "filesize", cond = conditions.buffer_not_empty })
 		ins_right({
