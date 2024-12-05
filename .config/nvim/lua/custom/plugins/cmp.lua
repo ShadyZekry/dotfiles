@@ -79,6 +79,12 @@ return { -- Autocompletion
 		-- Snippet Engine & its associated nvim-cmp source
 		{
 			"L3MON4D3/LuaSnip",
+			config = function()
+				require("luasnip").config.setup({
+					history = true,
+					updateevents = "TextChanged,TextChangedI",
+				})
+			end,
 			dependencies = {
 				-- `friendly-snippets` contains a variety of premade snippets.
 				--    See the README about individual language/framework/plugin snippets:
