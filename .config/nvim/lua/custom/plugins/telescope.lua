@@ -74,6 +74,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						["<C-t>"] = function()
 							feedkeys("-t")
 						end, --file-type
+						["<C-space>"] = function(prompt_bufnr)
+							require("telescope.actions.generate").refine(prompt_bufnr, {
+								prompt_to_prefix = true,
+								sorter = false,
+							})
+						end,
 					},
 					n = {
 						["<C-j>"] = actions.cycle_history_next,
