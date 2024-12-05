@@ -7,6 +7,10 @@ return {
 	config = function()
 		local ls = require("luasnip")
 
+		ls.setup({
+			update_events = "TextChanged,TextChangedI",
+		})
+
 		vim.keymap.set({ "i" }, "<C-L>", function()
 			ls.expand()
 		end, { silent = true })
