@@ -85,6 +85,14 @@ return {
 			return tostring(lines) .. "L " .. tostring(vim.fn.wordcount().visual_chars) .. "C"
 		end
 
+		local function isRecording()
+			local reg = vim.fn.reg_recording()
+			if reg == "" then
+				return ""
+			end -- not recording
+			return "recording @" .. reg
+		end
+
 		-- Add components to the left
 		ins_left({
 			function()
@@ -203,6 +211,7 @@ return {
 
 		-- Add components to the right
 		ins_right({ "searchcount", maxcount = 999, timeout = 500 })
+		ins_right({ isRecording })
 		ins_right({
 			"o:encoding",
 			fmt = string.upper,
