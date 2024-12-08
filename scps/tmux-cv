@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SESSIONNAME="cv"
+CV_PATH=~/development/My-CV
+tmux has-session -t $SESSIONNAME &> /dev/null
+
+if [ $? != 0 ]
+ then
+    tmux new-session -s $SESSIONNAME -c $CV_PATH -n build -d
+    tmux send-keys -t $SESSIONNAME:0 "c" C-m "resume"
+
+    tmux new-window -t $SESSIONNAME -c $CV_PATH -n vim
+    tmux send-keys -t $SESSIONNAME:1 "vim ." C-m run
+
+    tmux new-window -t $SESSIONNAME -c $CV_PATH -n okular -d
+    tmux send-keys -t $SESSIONNAME:2 "okular out/resume/resume.pdf" C-m
+fi
+
+tmux attach -t $SESSIONNAME
