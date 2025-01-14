@@ -10,10 +10,7 @@ if [ $? != 0 ]
     tmux send-keys -t $SESSIONNAME:0 "sail up" C-m
 
     tmux new-window -t $SESSIONNAME -c $TAGADDOD_PATH -n vim
-    tmux send-keys -t $SESSIONNAME:1 "vim .env" C-m
-
-    tmux new-window -t $SESSIONNAME -c $TAGADDOD_PATH -n git
-    tmux send-keys -t $SESSIONNAME:2 "lazygit" C-m
+    tmux send-keys -t $SESSIONNAME:1 "vim ." C-m "g."
 fi
 
 tmux attach -t $SESSIONNAME
