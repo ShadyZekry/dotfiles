@@ -10,7 +10,7 @@ if [ $? != 0 ]
     tmux send-keys -t $SESSIONNAME:0 "sail up" C-m
 
     tmux new-window -t $SESSIONNAME -c $KHEDMA_PATH -n vim
-    tmux send-keys -t $SESSIONNAME:1 "vim ." C-m "g."
+    tmux send-keys -t $SESSIONNAME:1 "vim ." C-m
 fi
 
 tmux attach -t $SESSIONNAME
