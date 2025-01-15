@@ -92,15 +92,50 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						end, --file-type
 					},
 				},
-			},
-			pickers = {
-				find_files = {
-					find_command = { "rg", "--files", "--no-ignore", "--glob", "!vendor/**" }, -- Add this line to include gitignored files
+				pickers = {
+					find_files = {
+						find_command = { "rg", "--files", "--no-ignore", "--glob", "!vendor/**" }, -- Add this line to include gitignored files
+						-- mappings = {
+						-- 	i = {
+						-- 		["<C-x>"] = function()
+						-- 			feedkeys("--glob=!")
+						-- 		end, --exclude
+						-- 		["<C-t>"] = function()
+						-- 			feedkeys("-t")
+						-- 		end, --file-type
+						-- 	},
+						-- 	n = {
+						-- 		["<C-x>"] = function()
+						-- 			feedkeys("--glob=!")
+						-- 		end, --exclude
+						-- 		["<C-t>"] = function()
+						-- 			feedkeys("-t")
+						-- 		end, --file-type
+						-- 	},
+						-- },
+					},
 				},
-			},
-			extensions = {
-				["ui-select"] = {
-					require("telescope.themes").get_dropdown(),
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown(),
+					},
+					undo = {
+						mappings = {
+							i = {
+								["<cr>"] = require("telescope-undo.actions").yank_additions,
+								["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+								["<C-cr>"] = require("telescope-undo.actions").restore,
+								-- alternative defaults, for users whose terminals do questionable things with modified <cr>
+								["<C-y>"] = require("telescope-undo.actions").yank_deletions,
+								["<C-r>"] = require("telescope-undo.actions").restore,
+							},
+							n = {
+								["y"] = require("telescope-undo.actions").yank_additions,
+								["Y"] = require("telescope-undo.actions").yank_deletions,
+								["u"] = require("telescope-undo.actions").restore,
+							},
+						},
+					},
 				},
 			},
 		})

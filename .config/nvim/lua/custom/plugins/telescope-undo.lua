@@ -1,10 +1,8 @@
 return {
 	"debugloop/telescope-undo.nvim",
 	dependencies = { -- note how they're inverted to above example
-		{
-			"nvim-telescope/telescope.nvim",
-			dependencies = { "nvim-lua/plenary.nvim" },
-		},
+		"nvim-lua/plenary.nvim",
+		"debugloop/telescope-undo.nvim",
 	},
 	keys = {
 		{ -- lazy style key map
