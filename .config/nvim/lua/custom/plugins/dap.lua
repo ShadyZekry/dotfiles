@@ -49,34 +49,20 @@ return {
 				args = { "/home/shady/.local/share/nvim/lazy/vscode-php-debug/out/phpDebug.js" },
 			}
 
-			-- dap.configurations.php = {
-			-- 	{
-			-- 		type = "php",
-			-- 		request = "launch",
-			-- 		name = "Listen for Xdebug",
-			-- 		port = 9003,
-			-- 	},
-			-- }
-			--
-			-- local elixir_ls_debugger = vim.fn.exepath "elixir-ls-debugger"
-			-- if elixir_ls_debugger ~= "" then
-			--   dap.adapters.mix_task = {
-			--     type = "executable",
-			--     command = elixir_ls_debugger,
-			--   }
-			--
-			--   dap.configurations.elixir = {
-			--     {
-			--       type = "mix_task",
-			--       name = "phoenix server",
-			--       task = "phx.server",
-			--       request = "launch",
-			--       projectDir = "${workspaceFolder}",
-			--       exitAfterTaskReturns = false,
-			--       debugAutoInterpretAllModules = false,
-			--     },
-			--   }
-			-- end
+			dap.configurations.php = {
+				{
+					type = "php",
+					request = "launch",
+					name = "Listen for Xdebug",
+					port = 9003,
+					pathMappings = function()
+						local cwd = vim.fn.getcwd()
+						return {
+							["/var/www/html"] = cwd,
+						}
+					end,
+				},
+			}
 
 			vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
 			vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
