@@ -1,0 +1,4 @@
+#! /bin/bash
+
+notify-send --icon=shay "It's شاي time  🤏" "Every time is a tea time but not
+every tea time is ummm I don't know. Just go drink some tea please\!\!\!" --app-name="A gentle reminder"
