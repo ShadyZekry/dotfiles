@@ -32,8 +32,8 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 --  quickfix list
-vim.keymap.set("n", "<leader>n", "<cmd>cnext<CR>", { desc = "Move to the next location in quickfix list" })
-vim.keymap.set("n", "<leader>p", "<cmd>cprevious<CR>", { desc = "Move to the previous location in quickfix list" })
+vim.keymap.set("n", "<space>n", "<cmd>cnext<CR>", { desc = "Move to the next location in quickfix list" })
+vim.keymap.set("n", "<space>p", "<cmd>cprevious<CR>", { desc = "Move to the previous location in quickfix list" })
 
 vim.keymap.set(
 	"n",
@@ -100,11 +100,11 @@ local function get_blame_info()
 	local blame =
 		vim.fn.systemlist({ "git", "blame", "-L", current_line .. "," .. current_line, "--line-porcelain", filepath })
 	if vim.v.shell_error == 0 then
-		local committer = blame[6]:match("committer (.*)") or "Unknown"
-		local timestamp = blame[8]:match("committer%-time (.*)") or os.time()
+		local author = blame[2]:match("author (.*)") or "Unknown"
+		local timestamp = blame[4]:match("author%-time (.*)") or os.time()
 		local summary = blame[10]:match("summary (.*)") or "No summary"
 
-		return string.format("  %s 󰃭  %s   %s", committer, get_relative_time(timestamp), summary)
+		return string.format("  %s 󰃭  %s   %s", author, get_relative_time(timestamp), summary)
 	end
 	return nil
 end
@@ -118,7 +118,6 @@ local function toggle_blame()
 	if not blame_enabled then
 		vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
-		print("Git blame disabled")
 		return
 	end
 
@@ -132,8 +131,7 @@ local function toggle_blame()
 		local blame_info = get_blame_info()
 		if blame_info then
 			local current_line = vim.api.nvim_win_get_cursor(0)[1] - 1 -- 0-based for API
-			vim.api.nvim_buf_set_extmark(0, ns_id, current_line, 0, {
-				virt_text = { { blame_info, "Comment" } },
+			vim.api.nvim_buf_set_extmark(0, ns_id, current_line, 0, { virt_text = { { blame_info, "Comment" } },
 				virt_text_pos = "eol",
 				hl_mode = "combine",
 				priority = 100,
@@ -150,8 +148,7 @@ local function toggle_blame()
 		buffer = 0,
 		callback = update_blame,
 	})
-	print("Git blame enabled")
 end
 
 -- Keybinding to toggle
-vim.keymap.set("n", "<C-z>", toggle_blame, { noremap = true, silent = true, desc = "Toggle Git Blame" })
+vim.keymap.set("n", "<C-x>", toggle_blame, { noremap = true, silent = true, desc = "Toggle Git Blame" })
