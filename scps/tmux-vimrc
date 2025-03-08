@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SESSIONNAME="vimrc"
+VIMRC_PATH=~/.config/nvim
+tmux has-session -t $SESSIONNAME &> /dev/null
+
+if [ $? != 0 ]
+ then
+    tmux new-session -s $SESSIONNAME -c $VIMRC_PATH -n configs -d
+    tmux send-keys -t $SESSIONNAME:0 "vim ." C-m
+fi
+
+tmux attach -t $SESSIONNAME
