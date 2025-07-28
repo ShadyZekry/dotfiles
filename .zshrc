@@ -40,6 +40,9 @@ CASE_SENSITIVE="true"
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 export PATH=$PATH:~/scps
 
 export xclip='xclip -selection c'
