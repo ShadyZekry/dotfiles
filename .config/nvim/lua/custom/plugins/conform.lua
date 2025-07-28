@@ -13,7 +13,7 @@ return { -- Autoformat
 		},
 	},
 	opts = {
-		notify_on_error = false,
+		notify_on_error = true,
 		format_on_save = function(bufnr)
 			-- Disable "format_on_save lsp_fallback" for languages that don't
 			-- have a well standardized coding style. You can add additional
@@ -26,7 +26,7 @@ return { -- Autoformat
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
-			php = { "php" },
+			php = { "php_cs_fixer" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 			--
@@ -34,8 +34,10 @@ return { -- Autoformat
 			-- javascript = { "prettierd", "prettier", stop_after_first = true },
 		},
 		formatters = {
-			php = {
+			php_cs_fixer = {
+				env = { PHP_CS_FIXER_IGNORE_ENV = "1" },
 				command = "php-cs-fixer",
+
 				args = {
 					"fix",
 					"$FILENAME",
