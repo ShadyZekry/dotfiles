@@ -75,6 +75,7 @@ alias sail='./vendor/bin/sail'
 alias sart='sail artisan'
 alias sink='sail tinker'
 alias sartest='sail debug test --filter=$1'
+alias php-cs-fixer='export PHP_CS_FIXER_IGNORE_ENV=1; php-cs-fixer'
 
 # keeping ranger's current directory in shell after exiting
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
