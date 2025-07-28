@@ -131,6 +131,23 @@ return {
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "[T]oggle Inlay [H]ints")
 				end
+
+				vim.diagnostic.config({
+					float = true,
+					jump = {
+						float = false,
+						wrap = true,
+					},
+					severity_sort = false,
+					signs = true,
+					underline = true,
+					update_in_insert = false,
+					virtual_lines = false,
+					virtual_text = {
+						enabled = true,
+						spacing = 2, -- Adjust spacing as needed
+					},
+				})
 			end,
 		})
 
@@ -200,6 +217,7 @@ return {
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
+
 					-- This handles overriding only values explicitly passed
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
