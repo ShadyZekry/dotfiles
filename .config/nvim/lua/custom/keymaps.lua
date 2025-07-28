@@ -131,7 +131,8 @@ local function toggle_blame()
 		local blame_info = get_blame_info()
 		if blame_info then
 			local current_line = vim.api.nvim_win_get_cursor(0)[1] - 1 -- 0-based for API
-			vim.api.nvim_buf_set_extmark(0, ns_id, current_line, 0, { virt_text = { { blame_info, "Comment" } },
+			vim.api.nvim_buf_set_extmark(0, ns_id, current_line, 0, {
+				virt_text = { { blame_info, "Comment" } },
 				virt_text_pos = "eol",
 				hl_mode = "combine",
 				priority = 100,
@@ -151,4 +152,4 @@ local function toggle_blame()
 end
 
 -- Keybinding to toggle
-vim.keymap.set("n", "<C-x>", toggle_blame, { noremap = true, silent = true, desc = "Toggle Git Blame" })
+vim.keymap.set("n", "<C-g>", toggle_blame, { noremap = true, silent = true, desc = "Toggle Git Blame" })
