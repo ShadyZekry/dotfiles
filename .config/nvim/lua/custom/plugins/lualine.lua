@@ -39,8 +39,10 @@ return {
 		-- Config
 		local config = {
 			options = {
-				component_separators = "",
-				section_separators = "",
+				section_separators = { left = "", right = "" },
+				-- section_separators = { left = '', right = '' },
+				component_separators = { left = "", right = "" },
+				-- component_separators = { left = '', right = '' },
 				theme = {
 					normal = { c = { fg = colors.fg, bg = colors.bg } },
 					inactive = { c = { fg = colors.fg, bg = colors.bg } },
@@ -81,7 +83,6 @@ return {
 			local starts = vim.fn.line("v")
 			local ends = vim.fn.line(".")
 			local lines = starts <= ends and ends - starts + 1 or starts - ends + 1
-			-- return "/ " .. tostring(lines) .. "L " .. tostring(vim.fn.wordcount().visual_chars) .. "C"
 			return tostring(lines) .. "L " .. tostring(vim.fn.wordcount().visual_chars) .. "C"
 		end
 
@@ -91,6 +92,17 @@ return {
 				return ""
 			end -- not recording
 			return "recording @" .. reg
+		end
+
+		local function location()
+			return "Ln %l, Col %c"
+		end
+
+		local function progress()
+			local currentLine = vim.fn.line(".")
+			local totalLines = vim.fn.line("$")
+			local percent = math.floor((currentLine / totalLines) * 100)
+			return string.format("%d/%d (%d%%%%)", currentLine, totalLines, percent)
 		end
 
 		-- Add components to the left
@@ -134,7 +146,7 @@ return {
 			padding = { right = 1 },
 		})
 
-		ins_left({ "branch", icon = "", color = { fg = colors.violet, gui = "bold" } })
+		ins_left({ "branch", icon = "", color = { fg = colors.violet, gui = "bold" } })
 		ins_left({
 			"filetype",
 			colored = true, -- Displays filetype icon in color if set to true
@@ -189,39 +201,65 @@ return {
 			end,
 		})
 
-		ins_left({
-			function()
-				local msg = "No Active Lsp"
-				local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-				local clients = vim.lsp.get_clients()
-				if next(clients) == nil then
-					return msg
-				end
-				for _, client in ipairs(clients) do
-					local filetypes = client.config.filetypes
-					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						return client.name
-					end
-				end
-				return msg
-			end,
-			icon = " LSP:",
-			color = { fg = "#ffffff", gui = "bold" },
-		})
+		-- ins_left({
+		-- 	function()
+		-- 		local currentLine = vim.fn.line(".")
+		-- 		local command =
+		-- 			io.popen("git blame -L " .. currentLine .. "," .. currentLine .. " " .. vim.fn.expand("%:p"))
+		-- 		local result = command:read("*a")
+		-- 		command:close()
+		-- 	end,
+		-- 	cond = conditions.check_git_workspace,
+		-- 	color = { fg = "#ffffff", gui = "bold" },
+		-- })
 
 		-- Add components to the right
+
+		ins_right({
+			function()
+				local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+				local clients = vim.lsp.get_clients()
+				if next(clients) ~= nil then
+					for _, client in ipairs(clients) do
+						local filetypes = client.config.filetypes
+						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+							return client.name
+						end
+					end
+				end
+			end,
+			icon = " ",
+			cond = function()
+				local clients = vim.lsp.get_clients()
+				if next(clients) ~= nil then
+					for _, client in ipairs(clients) do
+						local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+						local filetypes = client.config.filetypes
+						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+							return true
+						end
+					end
+				end
+			end,
+		})
+
 		ins_right({ "searchcount", maxcount = 999, timeout = 500 })
 		ins_right({ isRecording })
 		ins_right({
 			"o:encoding",
 			fmt = string.upper,
 			cond = conditions.hide_in_width,
-			color = { fg = colors.green, gui = "bold" },
+			color = { fg = colors.green },
 		})
-		ins_right({ "location" })
+		ins_right({ location, color = { gui = "bold" } })
 		ins_right({ selectionCount })
-		ins_right({ "progress", color = { fg = colors.fg, gui = "bold" } })
-		ins_right({ "filesize", cond = conditions.buffer_not_empty })
+		ins_right({ progress, icon = "", color = { fg = colors.yellow, gui = "bold" } })
+		ins_right({
+			"filesize",
+			icon = "",
+			cond = conditions.buffer_not_empty,
+			color = { fg = colors.cyan, gui = "bold" },
+		})
 		ins_right({
 			function()
 				return "▊"
