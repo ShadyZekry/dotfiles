@@ -110,7 +110,6 @@ return {
 		-- (Default) Only show the documentation popup when manually triggered
 		completion = {
 			documentation = { auto_show = true },
-			signature = { enabled = true },
 			menu = {
 				draw = {
 					components = {
