@@ -146,7 +146,8 @@ return {
 			padding = { right = 1 },
 		})
 
-		ins_left({ "branch", icon = "", color = { fg = colors.violet, gui = "bold" } })
+		-- ins_left({ "branch", icon = "", color = { fg = colors.violet, gui = "bold" } })
+		ins_left({ "branch", icon = "", color = { fg = colors.violet, gui = "bold" } })
 		ins_left({
 			"filetype",
 			colored = true, -- Displays filetype icon in color if set to true
