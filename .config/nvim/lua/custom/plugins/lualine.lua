@@ -201,20 +201,7 @@ return {
 			end,
 		})
 
-		-- ins_left({
-		-- 	function()
-		-- 		local currentLine = vim.fn.line(".")
-		-- 		local command =
-		-- 			io.popen("git blame -L " .. currentLine .. "," .. currentLine .. " " .. vim.fn.expand("%:p"))
-		-- 		local result = command:read("*a")
-		-- 		command:close()
-		-- 	end,
-		-- 	cond = conditions.check_git_workspace,
-		-- 	color = { fg = "#ffffff", gui = "bold" },
-		-- })
-
 		-- Add components to the right
-
 		ins_right({
 			function()
 				local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
