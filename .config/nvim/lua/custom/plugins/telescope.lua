@@ -69,7 +69,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						["<C-j>"] = actions.cycle_history_next,
 						["<C-k>"] = actions.cycle_history_prev,
 						["<C-x>"] = function()
-							feedkeys("--glob=!")
+							feedkeys("-g=!")
 						end, --exclude
 						["<C-t>"] = function()
 							feedkeys("-t")
@@ -85,7 +85,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						["<C-j>"] = actions.cycle_history_next,
 						["<C-k>"] = actions.cycle_history_prev,
 						["<C-x>"] = function()
-							feedkeys("--glob=!")
+							feedkeys("g=!")
 						end, --exclude
 						["<C-t>"] = function()
 							feedkeys("-t")
@@ -94,11 +94,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				},
 				pickers = {
 					find_files = {
-						find_command = { "rg", "--files", "--no-ignore", "--glob", "!vendor/**" }, -- Add this line to include gitignored files
+						find_command = { "rg", "--files", "--no-ignore", "-g", "!vendor/**" }, -- Add this line to include gitignored files
 						-- mappings = {
 						-- 	i = {
 						-- 		["<C-x>"] = function()
-						-- 			feedkeys("--glob=!")
+						-- 			feedkeys("-g=!")
 						-- 		end, --exclude
 						-- 		["<C-t>"] = function()
 						-- 			feedkeys("-t")
@@ -106,7 +106,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						-- 	},
 						-- 	n = {
 						-- 		["<C-x>"] = function()
-						-- 			feedkeys("--glob=!")
+						-- 			feedkeys("-g=!")
 						-- 		end, --exclude
 						-- 		["<C-t>"] = function()
 						-- 			feedkeys("-t")
