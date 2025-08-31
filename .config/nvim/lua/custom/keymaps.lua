@@ -63,6 +63,9 @@ vim.api.nvim_create_user_command("PascalToSnake", function()
 end, { desc = "Convert word under cursor from PascalCase to snake_case" })
 
 vim.keymap.set("n", "<C-g>", toggle_blame, { noremap = true, silent = true, desc = "Toggle Git Blame" })
+vim.keymap.set("v", "<leader>ev", function()
+  require("shady.extract_var").extract_variable()
+end, { desc = "Extract variable (Treesitter-aware)" })
 
 -- vim.keymap.set(
 -- 	"n",
