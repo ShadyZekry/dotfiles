@@ -135,6 +135,29 @@ return {
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
+			per_filetype = {
+				sql = { "snippets", "dadbod", "buffer" },
+			},
+			providers = {
+				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+				snippets = {
+					min_keyword_length = 2,
+					score_offset = 4,
+				},
+				lsp = {
+					min_keyword_length = 3,
+					score_offset = 3,
+				},
+				path = {
+					min_keyword_length = 3,
+					score_offset = 2,
+				},
+				buffer = {
+					name = "buffer",
+					min_keyword_length = 3,
+					score_offset = 1,
+				},
+			},
 		},
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
