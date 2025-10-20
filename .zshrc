@@ -347,6 +347,7 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
    eval `cat $HOME/.ssh/ssh-agent` &> /dev/null
 
    ssh-add $HOME/.ssh/github &> /dev/null
+   ssh-add $HOME/.ssh/gitlab &> /dev/null
    ssh-add $HOME/.ssh/teel_digital_ocean &> /dev/null
 fi
 
