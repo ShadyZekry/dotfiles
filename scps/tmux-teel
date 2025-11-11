@@ -9,8 +9,11 @@ if [ $? != 0 ]
     tmux new-session -s $SESSIONNAME -c $TEEL_PATH -n vim -d
     tmux send-keys -t $SESSIONNAME:0 "vim ." C-m
 
+    tmux new-window -t $SESSIONNAME -c $TEEL_PATH -n timelines
+    tmux send-keys -t $SESSIONNAME:1 "vim timeline.txt" C-m
+
     tmux new-window -t $SESSIONNAME -c $TEEL_PATH -n sail
-    tmux send-keys -t $SESSIONNAME:1 "sail up -d" C-m
+    tmux send-keys -t $SESSIONNAME:2 "sail up -d" C-m
 fi
 
 tmux attach -t $SESSIONNAME
