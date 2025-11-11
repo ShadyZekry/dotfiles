@@ -1,15 +1,15 @@
 #!/bin/bash
 
-SESSIONNAME="egycop"
-EGYCOP_PATH=~/development/laravel/egycop/
+SESSIONNAME="egycopt"
+EGYCOPT_PATH=~/development/laravel/egycopt/
 tmux has-session -t $SESSIONNAME &> /dev/null
 
 if [ $? != 0 ]
  then
-    tmux new-session -s $SESSIONNAME -c $EGYCOP_PATH -n vim -d
+    tmux new-session -s $SESSIONNAME -c $EGYCOPT_PATH -n vim -d
     tmux send-keys -t $SESSIONNAME:0 "vim ." C-m
 
-    tmux new-window -t $SESSIONNAME -c $EGYCOP_PATH -n sail
+    tmux new-window -t $SESSIONNAME -c $EGYCOPT_PATH -n sail
     tmux send-keys -t $SESSIONNAME:1 "sail up -d" C-m
 fi
 
