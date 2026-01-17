@@ -42,6 +42,14 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+HISTFILE=~/.zsh_history
+SAVEHIST=100
+HISTSIZE=100
 
 export PATH=$PATH:~/scps
 
