@@ -62,7 +62,8 @@ alias nvim_test='XDG_CONFIG_HOME=~/.config/nvim_test/ XDG_DATA_HOME=~/.config/nv
 
 # Aliasses fore rc files
 alias vimrc='vim ~/.config/nvim/init.lua'
-alias bashrc='vim ~/.bashrc'
+alias zshrc='vim ~/.zshrc'
+alias bashrc='vim ~/.zshrc'
 alias so='source'
 
 alias c='clear'
