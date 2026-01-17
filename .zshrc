@@ -370,6 +370,6 @@ neofetch
 #sysinfo-retro
 #cpufetch
 #colorscript random
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(starship init zsh)"
 
