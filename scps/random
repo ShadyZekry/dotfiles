@@ -1,3 +1,3 @@
 #!/bin/bash
 
-tr -dc [:print:] </dev/random 2>/dev/null | head -c $1 ; echo
+LC_ALL=C </dev/urandom tr -dc [:print:] | head -c $1; echo
