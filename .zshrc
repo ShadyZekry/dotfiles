@@ -339,8 +339,11 @@ alias personal='cp -Rf /personal/* ~'
 ssh_auth
 
 precmd() {
-  # If the current directory has a bashrc, then use it.
-  [[ $PWD != $HOME && -f .bashrc ]] && source .bashrc
+  curr_dir="$PWD"
+  while [[ "$curr_dir" != $HOME ]]; do
+      curr_dir="$(dirname "$curr_dir")"
+      [[ $curr_dir != $HOME && -f $curr_dir/.bashrc ]] && source $curr_dir/.bashrc
+  done
 }
 
 export PASSWORD_STORE_DIR=~/.password-store
