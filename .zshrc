@@ -86,6 +86,9 @@ alias sink='sail tinker'
 alias sartest='sail debug test --filter=$1'
 alias php-cs-fixer='export PHP_CS_FIXER_IGNORE_ENV=1; php-cs-fixer'
 
+alias tf='terraform'
+alias k8s=kubectl
+
 # keeping ranger's current directory in shell after exiting
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
